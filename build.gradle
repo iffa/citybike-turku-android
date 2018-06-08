@@ -1,0 +1,74 @@
+buildscript {
+    ext.versions = [
+            'android_gradle': '3.2.0-alpha16',
+            'kotlin'        : '1.2.41',
+            'ktlint'        : '0.19.0',
+            'androidx'      : [
+                    'appcompat'        : '1.0.0-alpha3',
+                    'constraint_layout': '1.1.1',
+                    'design'           : '1.0.0-alpha3',
+                    'core_ktx'         : '1.0.0-alpha3',
+                    'lifecycle'        : '2.0.0-alpha1',
+                    'room'             : '2.0.0-alpha1',
+                    'test_runner'      : '1.1.0-alpha3',
+                    'test_rules'       : '1.1.0-alpha3'
+            ],
+            'rx'            : '2.1.14',
+            'rxkotlin'      : '2.2.0',
+            'rxlint'        : '1.6.1',
+            'dagger'        : '2.16',
+            'threetenabp'   : '1.1.0',
+            'moshi'         : '1.6.0',
+            'retrofit'      : '2.4.0',
+            'espresso'      : '3.1.0-alpha3'
+    ]
+
+    ext.buildConfig = [
+            'compileSdk': 28,
+            'minSdk'    : 21,
+            'targetSdk' : 28,
+    ]
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:${versions.android_gradle}"
+
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:${versions.kotlin}"
+
+        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.2'
+    }
+}
+
+plugins {
+    id "com.diffplug.gradle.spotless" version "3.13.0"
+    id 'com.github.ben-manes.versions' version "0.17.0"
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'com.diffplug.gradle.spotless'
+    spotless {
+        kotlin {
+            target "**/*.kt"
+            ktlint(versions.ktlint)
+            licenseHeaderFile project.rootProject.file('spotless/copyright.kt')
+        }
+    }
+}

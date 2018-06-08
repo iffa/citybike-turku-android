@@ -1,0 +1,110 @@
+ext {
+    ci = System.getenv("CI") == "true"
+}
+
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+kapt {
+    correctErrorTypes = true
+}
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'com.getkeepsafe.dexcount'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+
+    defaultConfig {
+        applicationId "xyz.santeri.citybike"
+
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile rootProject.file("signing/debug.jks")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            signingConfig signingConfigs.debug
+
+            versionNameSuffix "-dev"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        // Don't pre-dex on CI
+        preDexLibraries !ci
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    implementation "androidx.appcompat:appcompat:${versions.androidx.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraint_layout}"
+    implementation "com.google.android.material:material:${versions.androidx.design}"
+    implementation "androidx.core:core-ktx:${versions.androidx.core_ktx}"
+
+    implementation "androidx.lifecycle:lifecycle-extensions:${versions.androidx.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:${versions.androidx.lifecycle}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${versions.androidx.lifecycle}"
+
+    implementation "androidx.room:room-runtime:${versions.androidx.room}"
+    implementation "androidx.room:room-rxjava2:${versions.androidx.room}"
+    kapt "androidx.room:room-compiler:${versions.androidx.room}"
+
+    implementation "com.google.dagger:dagger-android:${versions.dagger}"
+    implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+
+    implementation "io.reactivex.rxjava2:rxjava:${versions.rx}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${versions.rxkotlin}"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
+
+    implementation "com.squareup.moshi:moshi:${versions.moshi}"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
+
+    implementation "com.jakewharton.threetenabp:threetenabp:${versions.threetenabp}"
+
+    debugImplementation "nl.littlerobots.rxlint:rxlint:${versions.rxlint}"
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.jetbrains.kotlin:kotlin-test:${versions.kotlin}"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlin}"
+
+    androidTestImplementation "androidx.arch.core:core-testing:${versions.androidx.lifecycle}"
+    androidTestImplementation "androidx.room:room-testing:${versions.androidx.room}"
+    androidTestImplementation "androidx.test:runner:${versions.androidx.test_runner}"
+    androidTestImplementation "androidx.test:rules:${versions.androidx.test_rules}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
+}
