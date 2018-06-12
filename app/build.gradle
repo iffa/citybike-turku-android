@@ -96,6 +96,8 @@ dependencies {
 
     implementation "com.jakewharton.threetenabp:threetenabp:${versions.threetenabp}"
 
+    implementation "javax.inject:javax.inject:1"
+
     debugImplementation "nl.littlerobots.rxlint:rxlint:${versions.rxlint}"
 
     testImplementation 'junit:junit:4.12'
