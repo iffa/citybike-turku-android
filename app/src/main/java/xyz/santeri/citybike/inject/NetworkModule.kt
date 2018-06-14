@@ -15,11 +15,11 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
     companion object {
-        const val BASE_URL = "http://data.foli.fi/"
+        const val BASE_URL = "https://data.foli.fi/"
         const val CONNECT_TIMEOUT = 10L
         const val READ_TIMEOUT = 10L
         const val WRITE_TIMEOUT = 10L
-        const val USER_AGENT = "citybike-turku-android/${BuildConfig.VERSION_NAME}; (Android/*; +https//github.com/iffa/citybike-turku-android; me@santeri.xyz)"
+        const val USER_AGENT = "citybike-turku-android/${BuildConfig.VERSION_NAME}; (Android/*; +https://github.com/iffa/citybike-turku-android; me@santeri.xyz)"
     }
 
     @Provides
