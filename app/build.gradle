@@ -96,7 +96,12 @@ dependencies {
 
     implementation "com.jakewharton.threetenabp:threetenabp:${versions.threetenabp}"
 
+    implementation "org.osmdroid:osmdroid-android:${versions.osmdroid}"
+    implementation "com.github.MKergall:osmbonuspack:${versions.osmdroid_bonus}"
+
     implementation "javax.inject:javax.inject:1"
+
+    implementation 'com.github.ajalt:timberkt:1.5.0'
 
     debugImplementation "nl.littlerobots.rxlint:rxlint:${versions.rxlint}"
 

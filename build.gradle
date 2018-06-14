@@ -18,6 +18,8 @@ buildscript {
             'rxlint'        : '1.6.1',
             'dagger'        : '2.16',
             'threetenabp'   : '1.1.0',
+            'osmdroid'      : '6.0.1',
+            'osmdroid_bonus': '6.5.1',
             'moshi'         : '1.6.0',
             'retrofit'      : '2.4.0',
             'espresso'      : '3.1.0-alpha3'
@@ -53,6 +55,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
