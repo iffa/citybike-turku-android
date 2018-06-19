@@ -1,5 +1,5 @@
 # citybike-turku-android (Fölläri)
-Android application for Turku's city bike service.
+Android application for Turku's city bike service. Written in Kotlin & using Android Architecture Components.
 
 Data source: Turku region public transport's transit and timetable data. The administrator of the data is Turku region public transport. Dataset is downloaded from http://data.foli.fi/ using the license Creative Commons Attribution 4.0 International (CC BY 4.0).
 
