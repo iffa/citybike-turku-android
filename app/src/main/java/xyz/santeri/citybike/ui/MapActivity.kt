@@ -113,7 +113,7 @@ class MapActivity : BaseActivity() {
             marker.id = rack.id
             marker.position = GeoPoint(rack.location.coordinates[1], rack.location.coordinates[0])
             marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-            marker.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_map_marker))
+            marker.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_map_marker_variant))
             marker.setInfoWindow(null)
             mapView.overlays.add(marker)
         }
