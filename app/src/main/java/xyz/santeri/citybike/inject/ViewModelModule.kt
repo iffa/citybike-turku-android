@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import xyz.santeri.citybike.ui.mapscreen.MapScreenViewModel
+import xyz.santeri.citybike.ui.MapViewModel
 
 @Module
 abstract class ViewModelModule {
@@ -14,6 +14,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MapScreenViewModel::class)
-    internal abstract fun mapScreenViewModel(viewModel: MapScreenViewModel): ViewModel
+    @ViewModelKey(MapViewModel::class)
+    internal abstract fun mapViewModel(viewModel: MapViewModel): ViewModel
 }

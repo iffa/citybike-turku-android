@@ -4,8 +4,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import xyz.santeri.citybike.CitybikeApp
-import xyz.santeri.citybike.ui.MainActivityModule
-import xyz.santeri.citybike.ui.mapscreen.MapScreenModule
+import xyz.santeri.citybike.ui.MapActivityModule
 import javax.inject.Singleton
 
 @Singleton
@@ -14,8 +13,7 @@ import javax.inject.Singleton
     AppModule::class,
     NetworkModule::class,
     ViewModelModule::class,
-    MainActivityModule::class,
-    MapScreenModule::class
+    MapActivityModule::class
 ])
 interface AppComponent : AndroidInjector<CitybikeApp> {
     @Component.Builder

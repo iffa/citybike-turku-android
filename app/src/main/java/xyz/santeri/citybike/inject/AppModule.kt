@@ -15,10 +15,9 @@ class AppModule {
     @Singleton
     fun provideContext(application: CitybikeApp): Context = application.applicationContext
 
-    @Named("app")
     @Singleton
     @Provides
-    fun provideAppPreferences(context: Context): SharedPreferences {
+    fun provideSharedPreferences(context: Context): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(context)
     }
 }

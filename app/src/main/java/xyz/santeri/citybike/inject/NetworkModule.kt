@@ -1,5 +1,6 @@
 package xyz.santeri.citybike.inject
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -9,6 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import xyz.santeri.citybike.BuildConfig
 import xyz.santeri.citybike.data.remote.RacksApi
 import xyz.santeri.citybike.http.HeaderInterceptor
+import xyz.santeri.citybike.http.MockDataInterceptor
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -29,6 +31,7 @@ class NetworkModule {
                 .addInterceptor(HeaderInterceptor(
                         Pair("User-Agent", USER_AGENT)
                 ))
+                .addInterceptor(MockDataInterceptor())
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
@@ -38,7 +41,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient, context: Context): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
@@ -49,5 +52,5 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRacksApi(retrofit: Retrofit) = retrofit.create(RacksApi::class.java)
+    fun provideRacksApi(retrofit: Retrofit): RacksApi = retrofit.create(RacksApi::class.java)
 }

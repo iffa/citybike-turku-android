@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-internal abstract class MainActivityModule {
+internal abstract class MapActivityModule {
     @ContributesAndroidInjector
-    internal abstract fun mainActivity(): MainActivity
+    internal abstract fun mainActivity(): MapActivity
 }

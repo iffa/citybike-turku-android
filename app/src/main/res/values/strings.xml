@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Citybikes (Turku)</string>
+    <string name="sb_racks_loaded">Racks loaded successfully</string>
+    <string name="sb_racks_error">Failed to load racks</string>
+    <string name="action_refresh">Refresh</string>
 </resources>
