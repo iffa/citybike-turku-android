@@ -6,6 +6,7 @@ import com.github.ajalt.timberkt.Timber
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import org.threeten.bp.OffsetDateTime
 import retrofit2.HttpException
 import xyz.santeri.citybike.data.model.Rack
 import xyz.santeri.citybike.data.remote.RacksApi
@@ -16,7 +17,7 @@ class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewMod
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     val racks = MutableLiveData<Data<List<Rack>>>()
-    val bikesAvailable = MutableLiveData<Int>()
+    val details = MutableLiveData<Details>()
 
     init {
         loadRacks()
@@ -29,7 +30,7 @@ class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewMod
 
         racks.postValue(Data(DataState.LOADING))
 
-        compositeDisposable.add(Observable.interval(0, 60,
+        compositeDisposable.add(Observable.interval(0, 120,
                 TimeUnit.SECONDS, Schedulers.computation())
                 .flatMapSingle { racksApi.getBikeRacks() }
                 .subscribeOn(Schedulers.io())
@@ -45,7 +46,7 @@ class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewMod
                                 it.racks.forEach {
                                     totalBikesAvailable += it.properties.bikesAvailable
                                 }
-                                bikesAvailable.postValue(totalBikesAvailable)
+                                details.postValue(Details(totalBikesAvailable, OffsetDateTime.now()))
                             } else {
                                 racks.postValue(Data(DataState.EMPTY))
                             }
@@ -70,3 +71,5 @@ class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewMod
 enum class DataState { LOADING, SUCCESS, EMPTY, ERROR }
 
 data class Data<out T> constructor(val dataState: DataState, val data: T? = null, val errorCode: Int? = null)
+
+data class Details(val totalBikesAvailable: Int, val updatedTime: OffsetDateTime)

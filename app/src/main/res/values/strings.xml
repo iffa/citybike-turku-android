@@ -9,4 +9,6 @@
     <string name="tv_bikes_total_available">%1$d bikes available right now.</string>
     <string name="tv_list_racks_availability">%1$d out of %2$d bikes available</string>
     <string name="tv_sheet_swipe_up">Swipe up to see details</string>
+    <string name="time_now">just now</string>
+    <string name="time_prefix">Refreshed</string>
 </resources>

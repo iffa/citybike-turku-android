@@ -32,6 +32,17 @@
         android:text="@string/tv_sheet_swipe_up"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
+    <xyz.santeri.citybike.ui.widget.RelativeTimeTextView
+        android:id="@+id/updatedTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:visibility="gone"
+        app:relative_time_prefix="@string/time_prefix"
+        tools:text="Refreshed just now" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

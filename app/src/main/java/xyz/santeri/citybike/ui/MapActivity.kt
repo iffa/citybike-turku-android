@@ -92,14 +92,16 @@ class MapActivity : BaseActivity() {
             }
         })
 
-        vm.bikesAvailable.observe(this, Observer {
+        vm.details.observe(this, Observer {
             it?.let {
                 if (bottomSheet.visibility == View.GONE) {
                     TransitionManager.beginDelayedTransition(root)
                     bottomSheet.visibility = View.VISIBLE
                 }
 
-                totalAvailable.text = getString(R.string.tv_bikes_total_available, it)
+                totalAvailable.text = getString(R.string.tv_bikes_total_available, it.totalBikesAvailable)
+
+                updatedTime.setReferenceTime(it.updatedTime.toInstant().toEpochMilli())
             }
         })
 
@@ -126,14 +128,15 @@ class MapActivity : BaseActivity() {
                     BottomSheetBehavior.STATE_EXPANDED -> {
                         TransitionManager.beginDelayedTransition(root)
                         swipeUpHint.visibility = View.GONE
+                        updatedTime.visibility = View.VISIBLE
                     }
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         TransitionManager.beginDelayedTransition(root)
                         swipeUpHint.visibility = View.VISIBLE
+                        updatedTime.visibility = View.GONE
                     }
                 }
             }
-
         })
 
         recyclerView.layoutManager = LinearLayoutManager(this)
