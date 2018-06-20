@@ -21,8 +21,9 @@ class MockDataInterceptor @Inject constructor(val context: Context) : Intercepto
             if (BuildConfig.MOCK_RESPONSES) {
                 val behavior = NetworkBehavior.create()
                 behavior.setDelay(2000, TimeUnit.MILLISECONDS)
-                behavior.setFailurePercent(50)
-                behavior.setVariancePercent(50)
+                behavior.setFailurePercent(15) // Chance of HTTP 500 error
+                behavior.setErrorPercent(40) // Chance of getting a response, but it is empty
+                behavior.setVariancePercent(50) // Delay variance
 
                 Thread.sleep(behavior.calculateDelay(TimeUnit.MILLISECONDS))
 
@@ -37,14 +38,17 @@ class MockDataInterceptor @Inject constructor(val context: Context) : Intercepto
                             .body(ResponseBody.create(MediaType.parse("text/plain"), "Internal Server Error"))
                             .build()
                 } else {
-                    Timber.d { "Returning mock response (success)" }
+                    val error = behavior.calculateIsError()
+
+                    Timber.d { "Returning mock response (empty response: $error)" }
 
                     return Response.Builder()
                             .code(200)
-                            .message(successResponse)
+                            .message(if (error) emptyResponse else successResponse)
                             .request(it.request())
                             .protocol(Protocol.HTTP_1_1)
-                            .body(ResponseBody.create(MediaType.parse("application/json"), successResponse))
+                            .body(ResponseBody.create(MediaType.parse("application/json"),
+                                    if (error) emptyResponse else successResponse))
                             .addHeader("Content-Type", "application/json")
                             .build()
                 }

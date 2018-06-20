@@ -1,25 +1,29 @@
 package xyz.santeri.citybike.ui
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.github.ajalt.timberkt.Timber
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_map.*
 import xyz.santeri.citybike.R
-import xyz.santeri.citybike.data.model.RackEntity
+import xyz.santeri.citybike.data.model.Availability
+import xyz.santeri.citybike.data.model.Rack
 import xyz.santeri.citybike.ui.base.BaseActivity
+import xyz.santeri.citybike.ui.ext.px
 import xyz.santeri.citybike.ui.ext.stylize
+import xyz.santeri.citybike.ui.widget.ShapeForm
+import xyz.santeri.citybike.ui.widget.ShapeTextDrawable
 import javax.inject.Inject
 
 class MapActivity : BaseActivity() {
@@ -135,7 +139,7 @@ class MapActivity : BaseActivity() {
     }
 
     private fun configureMap(map: GoogleMap) {
-        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.maps_dark2))
+        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.maps_dark))
         map.isBuildingsEnabled = false
         map.isIndoorEnabled = false
 
@@ -164,20 +168,36 @@ class MapActivity : BaseActivity() {
         }
     }
 
-    private fun addRackMarkers(racks: List<RackEntity>) {
+    private fun addRackMarkers(racks: List<Rack>) {
         racks.forEach { rack ->
             mapView.getMapAsync { map ->
                 run {
                     val marker = map.addMarker(MarkerOptions()
+                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(rack)))
                             .position(LatLng(
-                                    rack.location.coordinates[1],
-                                    rack.location.coordinates[0]))
+                                    rack.latitude,
+                                    rack.longitude))
                             .title(rack.properties.name))
 
                     marker.tag = rack
                 }
             }
         }
+    }
+
+    private fun getMarkerIcon(rack: Rack): Bitmap {
+        return ShapeTextDrawable(
+                shape = ShapeForm.ROUND,
+                color = when (rack.availability) {
+                    Availability.GOOD -> ContextCompat.getColor(this, R.color.green_500)
+                    Availability.WEAK -> ContextCompat.getColor(this, R.color.orange_500)
+                    Availability.EMPTY -> ContextCompat.getColor(this, R.color.red_500)
+                },
+                borderThickness = 1.px,
+                borderColor = ContextCompat.getColor(this, R.color.grey_100),
+                text = rack.properties.bikesAvailable.toString(),
+                textBold = true
+        ).toBitmap(32.px, 32.px)
     }
 
     private fun showSnackbar(message: String, duration: Int) {

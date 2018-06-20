@@ -6,14 +6,14 @@ import com.github.ajalt.timberkt.Timber
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
-import xyz.santeri.citybike.data.model.RackEntity
+import xyz.santeri.citybike.data.model.Rack
 import xyz.santeri.citybike.data.remote.RacksApi
 import javax.inject.Inject
 
 class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewModel() {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val racks = MutableLiveData<Data<List<RackEntity>>>()
+    val racks = MutableLiveData<Data<List<Rack>>>()
 
     init {
         loadRacks()
