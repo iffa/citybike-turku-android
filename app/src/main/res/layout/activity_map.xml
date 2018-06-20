@@ -28,4 +28,6 @@
             android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <include layout="@layout/bottom_sheet_rack_details" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

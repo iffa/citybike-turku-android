@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -14,8 +15,10 @@ import com.github.ajalt.timberkt.Timber
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.*
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_map.*
+import kotlinx.android.synthetic.main.bottom_sheet_rack_details.*
 import xyz.santeri.citybike.R
 import xyz.santeri.citybike.data.model.Availability
 import xyz.santeri.citybike.data.model.Rack
@@ -93,6 +96,21 @@ class MapActivity : BaseActivity() {
             run {
                 map?.let { configureMap(it) }
             }
+        }
+
+        val behavior = BottomSheetBehavior.from(bottomSheet)
+        behavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onSlide(sheet: View, slideOffset: Float) {
+            }
+
+            override fun onStateChanged(sheet: View, newState: Int) {
+
+            }
+
+        })
+
+        if (behavior.state != BottomSheetBehavior.STATE_EXPANDED) {
+            behavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
     }
 
