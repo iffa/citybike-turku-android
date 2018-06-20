@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lucasurbas.listitemview.ListItemView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?selectableItemBackground"
+    app:liv_displayMode="icon"
+    app:liv_icon="@drawable/ic_bullet"
+    tools:liv_iconColor="@color/green_500"
+    tools:liv_subtitle="10 out of 12 bikes available"
+    tools:liv_title="Kauppatori" />

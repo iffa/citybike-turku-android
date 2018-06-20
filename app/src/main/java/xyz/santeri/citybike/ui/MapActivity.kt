@@ -11,6 +11,8 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.TransitionManager
 import com.github.ajalt.timberkt.Timber
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -25,6 +27,7 @@ import xyz.santeri.citybike.data.model.Rack
 import xyz.santeri.citybike.ui.base.BaseActivity
 import xyz.santeri.citybike.ui.ext.px
 import xyz.santeri.citybike.ui.ext.stylize
+import xyz.santeri.citybike.ui.list.RackAdapter
 import xyz.santeri.citybike.ui.widget.ShapeForm
 import xyz.santeri.citybike.ui.widget.ShapeTextDrawable
 import javax.inject.Inject
@@ -34,6 +37,8 @@ class MapActivity : BaseActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var vm: MapViewModel
+
+    private val adapter = RackAdapter()
 
     companion object {
         const val MAP_BUNDLE = "map_bundle"
@@ -64,6 +69,7 @@ class MapActivity : BaseActivity() {
 
                     it.data?.let {
                         addRackMarkers(it)
+                        adapter.newItems(it)
                     }
                 }
                 DataState.ERROR -> {
@@ -86,6 +92,17 @@ class MapActivity : BaseActivity() {
             }
         })
 
+        vm.bikesAvailable.observe(this, Observer {
+            it?.let {
+                if (bottomSheet.visibility == View.GONE) {
+                    TransitionManager.beginDelayedTransition(root)
+                    bottomSheet.visibility = View.VISIBLE
+                }
+
+                totalAvailable.text = getString(R.string.tv_bikes_total_available, it)
+            }
+        })
+
         var mapBundle: Bundle? = null
         if (savedInstanceState != null) {
             mapBundle = savedInstanceState.getBundle(MAP_BUNDLE)
@@ -104,14 +121,23 @@ class MapActivity : BaseActivity() {
             }
 
             override fun onStateChanged(sheet: View, newState: Int) {
-
+                Timber.d { "Bottom sheet state changed to $newState" }
+                when (newState) {
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+                        TransitionManager.beginDelayedTransition(root)
+                        swipeUpHint.visibility = View.GONE
+                    }
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+                        TransitionManager.beginDelayedTransition(root)
+                        swipeUpHint.visibility = View.VISIBLE
+                    }
+                }
             }
 
         })
 
-        if (behavior.state != BottomSheetBehavior.STATE_EXPANDED) {
-            behavior.state = BottomSheetBehavior.STATE_EXPANDED
-        }
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {

@@ -105,6 +105,8 @@ dependencies {
 
     implementation "com.google.android.gms:play-services-maps:15.0.1"
 
+    implementation 'com.lucasurbas:listitemview:1.1.1'
+
     implementation "javax.inject:javax.inject:1"
 
     implementation 'com.github.ajalt:timberkt:1.5.0'

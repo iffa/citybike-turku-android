@@ -16,6 +16,7 @@ class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewMod
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     val racks = MutableLiveData<Data<List<Rack>>>()
+    val bikesAvailable = MutableLiveData<Int>()
 
     init {
         loadRacks()
@@ -39,6 +40,12 @@ class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewMod
 
                             if (it.racks.isNotEmpty()) {
                                 racks.postValue(Data(DataState.SUCCESS, it.racks))
+
+                                var totalBikesAvailable = 0
+                                it.racks.forEach {
+                                    totalBikesAvailable += it.properties.bikesAvailable
+                                }
+                                bikesAvailable.postValue(totalBikesAvailable)
                             } else {
                                 racks.postValue(Data(DataState.EMPTY))
                             }
