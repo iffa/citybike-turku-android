@@ -5,14 +5,15 @@ import androidx.lifecycle.ViewModel
 import com.github.ajalt.timberkt.Timber
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 import xyz.santeri.citybike.data.model.RackEntity
 import xyz.santeri.citybike.data.remote.RacksApi
 import javax.inject.Inject
 
 class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewModel() {
-    val racks = MutableLiveData<Data<List<RackEntity>>>()
-
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
+
+    val racks = MutableLiveData<Data<List<RackEntity>>>()
 
     init {
         loadRacks()
@@ -26,15 +27,25 @@ class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewMod
         compositeDisposable.add(racksApi.getBikeRacks()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .subscribe({
-                    Timber.d { "Successfully loaded ${it.racks.size} racks from API" }
+                .subscribe(
+                        {
+                            Timber.d { "Successfully loaded ${it.racks.size} racks from API" }
 
-                    racks.postValue(Data(DataState.SUCCESS, it.racks))
-                }, {
-                    Timber.e(it, { "Failed to load racks from API" })
+                            if (it.racks.isNotEmpty()) {
+                                racks.postValue(Data(DataState.SUCCESS, it.racks))
+                            } else {
+                                racks.postValue(Data(DataState.EMPTY))
+                            }
+                        },
+                        {
+                            Timber.e(it) { "Failed to load racks from API" }
 
-                    racks.postValue(Data(DataState.ERROR, null, it.message))
-                }))
+                            if (it is HttpException) {
+                                racks.postValue(Data(DataState.ERROR, null, it.code()))
+                            } else {
+                                racks.postValue(Data(DataState.ERROR, null, null))
+                            }
+                        }))
     }
 
     override fun onCleared() {
@@ -42,3 +53,7 @@ class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewMod
         super.onCleared()
     }
 }
+
+enum class DataState { LOADING, SUCCESS, EMPTY, ERROR }
+
+data class Data<out T> constructor(val dataState: DataState, val data: T? = null, val errorCode: Int? = null)

@@ -1,6 +1,5 @@
 package xyz.santeri.citybike.inject
 
-import android.content.Context
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -26,12 +25,12 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideHttpClient(): OkHttpClient {
+    fun provideHttpClient(mockDataInterceptor: MockDataInterceptor): OkHttpClient {
         val builder = OkHttpClient.Builder()
                 .addInterceptor(HeaderInterceptor(
                         Pair("User-Agent", USER_AGENT)
                 ))
-                .addInterceptor(MockDataInterceptor())
+                .addInterceptor(mockDataInterceptor)
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
@@ -41,7 +40,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, context: Context): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)

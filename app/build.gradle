@@ -26,6 +26,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "maps_api_key", propOrDef('CITYBIKE_MAPS_API_KEY', "")
     }
 
     signingConfigs {
@@ -42,12 +44,16 @@ android {
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField("boolean", "MOCK_RESPONSES", "false")
         }
 
         debug {
             signingConfig signingConfigs.debug
 
             versionNameSuffix "-dev"
+
+            buildConfigField("boolean", "MOCK_RESPONSES", "true")
         }
     }
 
@@ -99,6 +105,8 @@ dependencies {
 
     implementation "org.osmdroid:osmdroid-android:${versions.osmdroid}"
     implementation "com.github.MKergall:osmbonuspack:${versions.osmdroid_bonus}"
+
+    implementation "com.google.android.gms:play-services-maps:15.0.1"
 
     implementation "javax.inject:javax.inject:1"
 

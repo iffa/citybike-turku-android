@@ -1,0 +1,765 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "nb_7081269",
+      "stop_code": "1",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.22338,
+          60.43509
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Satama",
+        "last_seen": 1529489330,
+        "bikes_avail": 6,
+        "slots_avail": 7,
+        "slots_total": 13
+      }
+    },
+    {
+      "id": "nb_7081294",
+      "stop_code": "2",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.230363,
+          60.435908
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Linna ",
+        "last_seen": 1529489330,
+        "bikes_avail": 3,
+        "slots_avail": 13,
+        "slots_total": 16
+      }
+    },
+    {
+      "id": "nb_7081314",
+      "stop_code": "3",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.23708,
+          60.4369
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Forum Marinum",
+        "last_seen": 1529489330,
+        "bikes_avail": 4,
+        "slots_avail": 16,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7081326",
+      "stop_code": "4",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.24219,
+          60.43884
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Varvintori",
+        "last_seen": 1529489330,
+        "bikes_avail": 9,
+        "slots_avail": 7,
+        "slots_total": 16
+      }
+    },
+    {
+      "id": "nb_7081337",
+      "stop_code": "5",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.24734,
+          60.44156
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Föri ",
+        "last_seen": 1529489330,
+        "bikes_avail": 5,
+        "slots_avail": 13,
+        "slots_total": 18
+      }
+    },
+    {
+      "id": "nb_7082603",
+      "stop_code": "6",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.25272,
+          60.44413
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Vaakahuone",
+        "last_seen": 1529489330,
+        "bikes_avail": 14,
+        "slots_avail": 10,
+        "slots_total": 24
+      }
+    },
+    {
+      "id": "nb_7082745",
+      "stop_code": "7",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.250222,
+          60.448059
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Puistokatu",
+        "last_seen": 1529489330,
+        "bikes_avail": 2,
+        "slots_avail": 10,
+        "slots_total": 12
+      }
+    },
+    {
+      "id": "nb_7082778",
+      "stop_code": "8",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.25944,
+          60.44633
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Ursininkatu",
+        "last_seen": 1529489330,
+        "bikes_avail": 12,
+        "slots_avail": 8,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7082838",
+      "stop_code": "9",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.26169,
+          60.44913
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Eerikinkatu",
+        "last_seen": 1529489330,
+        "bikes_avail": 12,
+        "slots_avail": 0,
+        "slots_total": 12
+      }
+    },
+    {
+      "id": "nb_7082853",
+      "stop_code": "10",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.25757,
+          60.45125
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Humalistonkatu",
+        "last_seen": 1529489330,
+        "bikes_avail": 3,
+        "slots_avail": 18,
+        "slots_total": 22
+      }
+    },
+    {
+      "id": "nb_7082891",
+      "stop_code": "11",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.2536,
+          60.45391
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Päärautatieasema",
+        "last_seen": 1529489330,
+        "bikes_avail": 11,
+        "slots_avail": 19,
+        "slots_total": 30
+      }
+    },
+    {
+      "id": "nb_7083037",
+      "stop_code": "12",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.26246,
+          60.45062
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Kävelykatu",
+        "last_seen": 1529489330,
+        "bikes_avail": 14,
+        "slots_avail": 8,
+        "slots_total": 22
+      }
+    },
+    {
+      "id": "nb_7083065",
+      "stop_code": "13",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.26602,
+          60.44811
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Kristiinankatu",
+        "last_seen": 1529489330,
+        "bikes_avail": 8,
+        "slots_avail": 10,
+        "slots_total": 18
+      }
+    },
+    {
+      "id": "nb_7083098",
+      "stop_code": "14",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.26835,
+          60.44935
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Kaupungintalo",
+        "last_seen": 1529489330,
+        "bikes_avail": 13,
+        "slots_avail": 11,
+        "slots_total": 24
+      }
+    },
+    {
+      "id": "nb_7083119",
+      "stop_code": "15",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.272806,
+          60.451194
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Vähätori",
+        "last_seen": 1529489330,
+        "bikes_avail": 7,
+        "slots_avail": 13,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7083153",
+      "stop_code": "16",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.27011,
+          60.45338
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Brahenkatu",
+        "last_seen": 1529489330,
+        "bikes_avail": 7,
+        "slots_avail": 13,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7083167",
+      "stop_code": "17",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.26849,
+          60.4547
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Puutori",
+        "last_seen": 1529489330,
+        "bikes_avail": 1,
+        "slots_avail": 19,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7083189",
+      "stop_code": "18",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.26857,
+          60.45735
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Linja-autoasema",
+        "last_seen": 1529489330,
+        "bikes_avail": 13,
+        "slots_avail": 7,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7117628",
+      "stop_code": "19",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.276438,
+          60.452332
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Tuomiokirkko",
+        "last_seen": 1529489330,
+        "bikes_avail": 6,
+        "slots_avail": 14,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7117650",
+      "stop_code": "20",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.28021,
+          60.4565
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Piispankatu",
+        "last_seen": 1529489330,
+        "bikes_avail": 6,
+        "slots_avail": 12,
+        "slots_total": 18
+      }
+    },
+    {
+      "id": "nb_7117691",
+      "stop_code": "21",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.28618,
+          60.46104
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Ikituuri",
+        "last_seen": 1529489330,
+        "bikes_avail": 4,
+        "slots_avail": 16,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7117717",
+      "stop_code": "22",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.28689,
+          60.45805
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Assistentinpolku",
+        "last_seen": 1529489330,
+        "bikes_avail": 15,
+        "slots_avail": 5,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7117770",
+      "stop_code": "23",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.287741,
+          60.453914
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Hämeenkatu",
+        "last_seen": 1529489330,
+        "bikes_avail": 2,
+        "slots_avail": 28,
+        "slots_total": 30
+      }
+    },
+    {
+      "id": "nb_7117857",
+      "stop_code": "24",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.29754,
+          60.45503
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "T-sairaala ",
+        "last_seen": 1529489330,
+        "bikes_avail": 2,
+        "slots_avail": 13,
+        "slots_total": 15
+      }
+    },
+    {
+      "id": "nb_7117897",
+      "stop_code": "25",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.28898,
+          60.45152
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Kurjenkaivonkenttä",
+        "last_seen": 1529489330,
+        "bikes_avail": 2,
+        "slots_avail": 18,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7117942",
+      "stop_code": "26",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.29399,
+          60.45029
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Kupittaan asema",
+        "last_seen": 1529489330,
+        "bikes_avail": 24,
+        "slots_avail": 6,
+        "slots_total": 30
+      }
+    },
+    {
+      "id": "nb_7117959",
+      "stop_code": "27",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.29624,
+          60.4473
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Datacity",
+        "last_seen": 1529489330,
+        "bikes_avail": 6,
+        "slots_avail": 9,
+        "slots_total": 15
+      }
+    },
+    {
+      "id": "nb_7117975",
+      "stop_code": "28",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.28417,
+          60.44641
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Kupittaankenttä",
+        "last_seen": 1529489330,
+        "bikes_avail": 4,
+        "slots_avail": 17,
+        "slots_total": 21
+      }
+    },
+    {
+      "id": "nb_7117996",
+      "stop_code": "29",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.27249,
+          60.44909
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Kirjastosilta",
+        "last_seen": 1529489330,
+        "bikes_avail": 6,
+        "slots_avail": 14,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7118021",
+      "stop_code": "30",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.26391,
+          60.44628
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Kaupunginteatteri",
+        "last_seen": 1529489330,
+        "bikes_avail": 10,
+        "slots_avail": 10,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7118047",
+      "stop_code": "31",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.2765,
+          60.44339
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Kaskenkatu ",
+        "last_seen": 1529489330,
+        "bikes_avail": 2,
+        "slots_avail": 20,
+        "slots_total": 22
+      }
+    },
+    {
+      "id": "nb_7118068",
+      "stop_code": "32",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.27142,
+          60.44046
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Kunnallissairaala",
+        "last_seen": 1529489330,
+        "bikes_avail": 4,
+        "slots_avail": 16,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7118075",
+      "stop_code": "33",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.25634,
+          60.43873
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Martti",
+        "last_seen": 1529489330,
+        "bikes_avail": 0,
+        "slots_avail": 18,
+        "slots_total": 18
+      }
+    },
+    {
+      "id": "nb_7118091",
+      "stop_code": "34",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.254487,
+          60.443032
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Vesibussi",
+        "last_seen": 1529489330,
+        "bikes_avail": 9,
+        "slots_avail": 11,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7118112",
+      "stop_code": "91",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.298223,
+          60.460249
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Popup 1",
+        "last_seen": 1529489330,
+        "bikes_avail": 3,
+        "slots_avail": 17,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7118131",
+      "stop_code": "92",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.24365,
+          60.44649
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Port Arthur",
+        "last_seen": 1529489330,
+        "bikes_avail": 3,
+        "slots_avail": 9,
+        "slots_total": 12
+      }
+    },
+    {
+      "id": "nb_7118150",
+      "stop_code": "93",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.244697,
+          60.438901
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Popup 3 ",
+        "last_seen": 1529489330,
+        "bikes_avail": 11,
+        "slots_avail": 9,
+        "slots_total": 20
+      }
+    },
+    {
+      "id": "nb_7744022",
+      "stop_code": "35",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.319654,
+          60.429637
+        ]
+      },
+      "properties": {
+        "operator": "nextbike",
+        "name": "Skanssi",
+        "last_seen": 1529489330,
+        "bikes_avail": 3,
+        "slots_avail": 7,
+        "slots_total": 10
+      }
+    }
+  ]
+}

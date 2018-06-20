@@ -1,24 +1,23 @@
 package xyz.santeri.citybike.ui
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.StringRes
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.github.ajalt.timberkt.Timber
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_map.*
-import org.osmdroid.config.Configuration
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory
-import org.osmdroid.util.GeoPoint
-import org.osmdroid.views.overlay.Marker
 import xyz.santeri.citybike.R
 import xyz.santeri.citybike.data.model.RackEntity
-import xyz.santeri.citybike.inject.NetworkModule
 import xyz.santeri.citybike.ui.base.BaseActivity
 import xyz.santeri.citybike.ui.ext.stylize
 import javax.inject.Inject
@@ -27,33 +26,28 @@ class MapActivity : BaseActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject
-    lateinit var preferences: SharedPreferences
-
     private lateinit var vm: MapViewModel
+
+    companion object {
+        const val MAP_BUNDLE = "map_bundle"
+    }
+
+    // Boundaries for map panning
+    private val mapBounds = LatLngBounds(LatLng(60.425192, 22.220658), LatLng(60.46524, 22.31643))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Configuration.getInstance().load(this, preferences)
-        Configuration.getInstance().userAgentValue = NetworkModule.USER_AGENT
-
         setContentView(R.layout.activity_map)
 
         setSupportActionBar(toolbar)
-
-        mapView.setTileSource(TileSourceFactory.MAPNIK)
-        mapView.setBuiltInZoomControls(false)
-        mapView.setMultiTouchControls(true)
-        mapView.controller.setCenter(GeoPoint(60.451813, 22.266630))
-        mapView.controller.setZoom(15.0)
 
         // Disable "pull to refresh", only care about the indicator
         refreshLayout.isEnabled = false
 
         vm = ViewModelProviders.of(this, viewModelFactory)[MapViewModel::class.java]
 
-        vm.racks.observe(this, Observer({
+        vm.racks.observe(this, Observer {
             when (it?.dataState) {
                 DataState.LOADING -> {
                     refreshLayout.isRefreshing = true
@@ -68,25 +62,91 @@ class MapActivity : BaseActivity() {
                 DataState.ERROR -> {
                     refreshLayout.isRefreshing = false
 
-                    showSnackbar(R.string.sb_racks_error, Snackbar.LENGTH_LONG)
+                    if (it.errorCode != null) {
+                        showSnackbar(getString(R.string.sb_racks_error_http, it.errorCode), Snackbar.LENGTH_LONG)
+                    } else {
+                        showSnackbar(R.string.sb_racks_error_generic, Snackbar.LENGTH_LONG)
+                    }
+                }
+                DataState.EMPTY -> {
+                    refreshLayout.isRefreshing = false
+
+                    showSnackbar(R.string.sb_racks_error_generic, Snackbar.LENGTH_LONG)
                 }
                 null -> {
                     Timber.e { "DataState is null, this shouldn't happen" }
                 }
             }
-        }))
+        })
+
+        var mapBundle: Bundle? = null
+        if (savedInstanceState != null) {
+            mapBundle = savedInstanceState.getBundle(MAP_BUNDLE)
+        }
+
+        mapView.onCreate(mapBundle)
+        mapView.getMapAsync { map ->
+            run {
+                map?.let { configureMap(it) }
+            }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+
+        var mapBundle = outState?.getBundle(MAP_BUNDLE)
+        if (mapBundle == null) {
+            mapBundle = Bundle()
+            outState?.putBundle(MAP_BUNDLE, mapBundle)
+        }
+
+        mapView.onSaveInstanceState(mapBundle)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart()
     }
 
     override fun onResume() {
         super.onResume()
-
         mapView.onResume()
     }
 
     override fun onPause() {
-        super.onPause()
-
         mapView.onPause()
+        super.onPause()
+    }
+
+    override fun onStop() {
+        mapView.onStop()
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        mapView.onDestroy()
+        super.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
+
+    private fun configureMap(map: GoogleMap) {
+        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.maps_dark2))
+        map.isBuildingsEnabled = false
+        map.isIndoorEnabled = false
+
+        map.uiSettings.isMapToolbarEnabled = false
+
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(60.451813, 22.266630), 14.0f))
+
+        // Map limits (panning, zooming etc.)
+        map.setLatLngBoundsForCameraTarget(mapBounds)
+        map.setMinZoomPreference(12.0f)
+        map.setMaxZoomPreference(16.0f)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -105,20 +165,19 @@ class MapActivity : BaseActivity() {
     }
 
     private fun addRackMarkers(racks: List<RackEntity>) {
-        mapView.overlays.clear()
-
         racks.forEach { rack ->
-            val marker = Marker(mapView)
+            mapView.getMapAsync { map ->
+                run {
+                    val marker = map.addMarker(MarkerOptions()
+                            .position(LatLng(
+                                    rack.location.coordinates[1],
+                                    rack.location.coordinates[0]))
+                            .title(rack.properties.name))
 
-            marker.id = rack.id
-            marker.position = GeoPoint(rack.location.coordinates[1], rack.location.coordinates[0])
-            marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-            marker.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_map_marker_variant))
-            marker.setInfoWindow(null)
-            mapView.overlays.add(marker)
+                    marker.tag = rack
+                }
+            }
         }
-
-        mapView.invalidate()
     }
 
     private fun showSnackbar(message: String, duration: Int) {
