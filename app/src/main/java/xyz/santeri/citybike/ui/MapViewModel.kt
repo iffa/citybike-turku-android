@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.ajalt.timberkt.Timber
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.threeten.bp.OffsetDateTime
@@ -33,17 +34,22 @@ class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewMod
         compositeDisposable.add(Observable.interval(0, 120,
                 TimeUnit.SECONDS, Schedulers.computation())
                 .flatMapSingle { racksApi.getBikeRacks() }
+                .flatMapSingle { response ->
+                    Single.fromCallable {
+                        response.racks.sorted()
+                    }
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe(
                         {
-                            Timber.d { "Successfully loaded ${it.racks.size} racks from API" }
+                            Timber.d { "Successfully loaded ${it.size} racks from API" }
 
-                            if (it.racks.isNotEmpty()) {
-                                racks.postValue(Data(DataState.SUCCESS, it.racks))
+                            if (it.isNotEmpty()) {
+                                racks.postValue(Data(DataState.SUCCESS, it))
 
                                 var totalBikesAvailable = 0
-                                it.racks.forEach {
+                                it.forEach {
                                     totalBikesAvailable += it.properties.bikesAvailable
                                 }
                                 details.postValue(Details(totalBikesAvailable, OffsetDateTime.now()))

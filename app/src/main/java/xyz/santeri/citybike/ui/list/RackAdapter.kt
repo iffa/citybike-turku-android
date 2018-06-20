@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.github.ajalt.timberkt.Timber
 import com.lucasurbas.listitemview.ListItemView
 import xyz.santeri.citybike.R
 import xyz.santeri.citybike.data.model.Availability
@@ -43,6 +44,10 @@ class RackAdapter : RecyclerView.Adapter<RackAdapter.Holder>() {
         }
 
         holder.view.iconColor = ContextCompat.getColor(holder.view.context, color)
+
+        holder.view.setOnClickListener {
+            Timber.d { "${rack.properties.name} clicked in list" }
+        }
     }
 
 

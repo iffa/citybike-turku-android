@@ -10,7 +10,11 @@ data class Rack(
         @Json(name = "stop_code") val stopCode: String,
         @Json(name = "geometry") val location: RackLocation,
         @Json(name = "properties") val properties: RackProperties
-) {
+) : Comparable<Rack> {
+    override fun compareTo(other: Rack): Int {
+        return properties.name.compareTo(other.properties.name, true)
+    }
+
     val availability: Availability
         get() {
             val x = properties.bikesAvailable
