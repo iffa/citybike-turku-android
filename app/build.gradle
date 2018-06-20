@@ -53,7 +53,7 @@ android {
 
             versionNameSuffix "-dev"
 
-            buildConfigField("boolean", "MOCK_RESPONSES", "true")
+            buildConfigField("boolean", "MOCK_RESPONSES", "false")
         }
     }
 

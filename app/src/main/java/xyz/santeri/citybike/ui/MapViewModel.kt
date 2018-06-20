@@ -3,11 +3,13 @@ package xyz.santeri.citybike.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.ajalt.timberkt.Timber
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
 import xyz.santeri.citybike.data.model.Rack
 import xyz.santeri.citybike.data.remote.RacksApi
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewModel() {
@@ -22,9 +24,13 @@ class MapViewModel @Inject constructor(private val racksApi: RacksApi) : ViewMod
     fun loadRacks() {
         Timber.d { "Loading rack data" }
 
+        compositeDisposable.clear()
+
         racks.postValue(Data(DataState.LOADING))
 
-        compositeDisposable.add(racksApi.getBikeRacks()
+        compositeDisposable.add(Observable.interval(0, 60,
+                TimeUnit.SECONDS, Schedulers.computation())
+                .flatMapSingle { racksApi.getBikeRacks() }
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe(
