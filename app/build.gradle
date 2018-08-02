@@ -2,6 +2,8 @@ ext {
     ci = System.getenv("CI") == "true"
 }
 
+apply plugin: 'io.github.rockerhieu.versionberg'
+
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
@@ -12,6 +14,15 @@ kapt {
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.getkeepsafe.dexcount'
+
+versionberg {
+    major 1
+    minor 0
+    patch 0
+
+    nameTemplate '${major}.${minor}.${patch}-${commitSha}'
+    codeTemplate '(((${major} * 100) + ${minor}) * 100) * 100000 + ${build}'
+}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -24,9 +35,8 @@ android {
 
         resConfigs "en", "fi"
 
-        versionCode 1
-        versionName "1.0.0"
-
+        versionCode versionberg.code
+        versionName versionberg.name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         resValue "string", "maps_api_key", propOrDef('CITYBIKE_MAPS_API_KEY', "")

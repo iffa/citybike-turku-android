@@ -41,6 +41,8 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:${versions.kotlin}"
 
         classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.3'
+
+        classpath 'io.github.rockerhieu:versionberg:1.0.2'
     }
 }
 
