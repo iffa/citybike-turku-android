@@ -6,7 +6,8 @@ width="200"
 
 An open source, ad free Android application for Turku's city bike service. Written in Kotlin and using the latest Android Architecture Components.
 
-Available on the Google Play Store soon
+Available on the Google Play Store soon:
+
 <a href="https://play.google.com/store/apps/details?id=xyz.santeri.citybike">
     <img alt="Get it on Google Play"
         height="80"
