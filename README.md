@@ -6,7 +6,7 @@ width="200"
 
 An open source, ad free Android application for Turku's city bike service. Written in Kotlin and using the latest Android Architecture Components.
 
-Available on the Google Play Store soon:
+Available on the Google Play Store
 
 <a href="https://play.google.com/store/apps/details?id=xyz.santeri.citybike">
     <img alt="Get it on Google Play"
@@ -22,7 +22,10 @@ Available on the Google Play Store soon:
 Contributions are always welcome. If you want to contribute, fork the project and submit a pull request.
 
 ### Configuration
-In order to build and test the app, you need to add your Google Maps API key to your [user home](gradle) `gradle.properties` file (as `CITYBIKE_MAPS_API_KEY`), and generate a release key as `signing/release.jks`.
+
+- Add Google Maps API key to `gradle.properties` (as `CITYBIKE_MAPS_API_KEY`).
+- Generate a release keystore (`signing/release.jks`) and add passwords to `gradle.properties`:
+   - `CITYBIKE_KEYSTORE_PASS`, `CITYBIKE_KEY_ALIAS` and `CITYBIKE_KEY_PASS`
 
 ## License
 
@@ -41,4 +44,3 @@ In order to build and test the app, you need to add your Google Maps API key to 
     limitations under the License.
 
 [contributors]: https://github.com/iffa/citybike-turku-android/graphs/contributors
-[gradle]: https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties
