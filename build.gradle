@@ -1,26 +1,26 @@
 buildscript {
     ext.versions = [
-            'android_gradle': '3.2.0-beta01',
-            'kotlin'        : '1.2.50',
+            'android_gradle': '3.2.0-beta05',
+            'kotlin'        : '1.2.60',
             'ktlint'        : '0.19.0',
             'androidx'      : [
-                    'appcompat'        : '1.0.0-alpha3',
+                    'appcompat'        : '1.0.0-beta01',
                     'constraint_layout': '1.1.2',
-                    'design'           : '1.0.0-alpha3',
-                    'core_ktx'         : '1.0.0-alpha3',
-                    'lifecycle'        : '2.0.0-alpha1',
-                    'room'             : '2.0.0-alpha1',
-                    'test_runner'      : '1.1.0-alpha3',
-                    'test_rules'       : '1.1.0-alpha3'
+                    'design'           : '1.0.0-beta01',
+                    'core_ktx'         : '1.0.0-beta01',
+                    'lifecycle'        : '2.0.0-beta01',
+                    'room'             : '2.0.0-beta01',
+                    'test_runner'      : '1.1.0-alpha4',
+                    'test_rules'       : '1.1.0-alpha4'
             ],
-            'rx'            : '2.1.16',
+            'rx'            : '2.2.0',
             'rxkotlin'      : '2.2.0',
             'rxlint'        : '1.6.1',
             'dagger'        : '2.16',
             'threetenabp'   : '1.1.0',
             'moshi'         : '1.6.0',
             'retrofit'      : '2.4.0',
-            'espresso'      : '3.1.0-alpha3'
+            'espresso'      : '3.1.0-alpha4'
     ]
 
     ext.buildConfig = [
@@ -45,7 +45,7 @@ buildscript {
 }
 
 plugins {
-    id "com.diffplug.gradle.spotless" version "3.13.0"
+    id "com.diffplug.gradle.spotless" version "3.14.0"
     id 'com.github.ben-manes.versions' version "0.20.0"
 }
 
