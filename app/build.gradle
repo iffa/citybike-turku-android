@@ -22,8 +22,10 @@ android {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
 
+        resConfigs "en", "fi"
+
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -37,13 +39,21 @@ android {
             keyAlias "androiddebugkey"
             keyPassword "android"
         }
+        release {
+            storeFile rootProject.file("signing/release.jks")
+            storePassword propOrDef('CITYBIKE_KEYSTORE_PASS', "")
+            keyAlias propOrDef('CITYBIKE_KEY_ALIAS', "")
+            keyPassword propOrDef('CITYBIKE_KEY_PASS', "")
+        }
     }
 
     buildTypes {
         release {
+            signingConfig signingConfigs.release
+
             shrinkResources true
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             buildConfigField("boolean", "MOCK_RESPONSES", "false")
         }
