@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kaupunkipyörät (Turku)</string>
+
+    <string name="action_refresh">Päivitä</string>
+
+    <string name="sb_racks_loaded">Telinetiedot ladattu onnistuneesti</string>
+    <string name="sb_racks_error_generic">Telinetietojen lataus epäonnistui</string>
+    <string name="sb_racks_error_http">Telinetietojen lataus epäonnistui (%1$d)</string>
+
+    <string name="tv_bikes_total_available">%1$d pyörää saatavilla tällä hetkellä.</string>
+    <string name="tv_list_racks_availability">%1$d/%2$d pyörää saatavilla</string>
+    <string name="tv_sheet_swipe_up">Pyyhkäise ylös nähdäksesi tarkemmat tiedot</string>
+    <string name="tv_credits_icon">Kuvakkeen tehnyt Freepik, www.flaticon.com</string>
+
+    <string name="time_now">juuri nyt</string>
+    <string name="time_prefix">Päivitetty</string>
+</resources>

@@ -1,14 +1,17 @@
 <resources>
-    <string name="app_name">Citybikes (Turku)</string>
+    <string name="app_name">City bikes (Turku)</string>
 
     <string name="action_refresh">Refresh</string>
 
-    <string name="sb_racks_loaded">Racks loaded successfully</string>
-    <string name="sb_racks_error_generic">Failed to load racks, try again later</string>
-    <string name="sb_racks_error_http">Failed to load racks, try again later (%1$d)</string>
+    <string name="sb_racks_loaded">Rack info loaded successfully</string>
+    <string name="sb_racks_error_generic">Failed to load rack info, try again later</string>
+    <string name="sb_racks_error_http">Failed to load rack info, try again later (%1$d)</string>
+
     <string name="tv_bikes_total_available">%1$d bikes available right now.</string>
     <string name="tv_list_racks_availability">%1$d out of %2$d bikes available</string>
     <string name="tv_sheet_swipe_up">Swipe up to see details</string>
+    <string name="tv_credits_icon">Icon made by Freepik from www.flaticon.com</string>
+
     <string name="time_now">just now</string>
     <string name="time_prefix">Refreshed</string>
 </resources>
