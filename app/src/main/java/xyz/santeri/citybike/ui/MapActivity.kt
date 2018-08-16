@@ -211,6 +211,10 @@ class MapActivity : BaseActivity() {
                 vm.loadRacks()
                 true
             }
+            R.id.action_about -> {
+
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

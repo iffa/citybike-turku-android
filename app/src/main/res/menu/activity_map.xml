@@ -6,4 +6,10 @@
         android:icon="@drawable/ic_refresh_white_24dp"
         android:title="@string/action_refresh"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_about"
+        android:icon="@drawable/ic_info_white_24dp"
+        android:title="@string/action_about"
+        app:showAsAction="ifRoom" />
 </menu>
